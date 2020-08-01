@@ -14,16 +14,10 @@
         <div class="row">
             <div class="col-md-8">
                 <div class="card">
-                    @foreach ($users as $user)
-                        <h2>{{$user->name}}</h2>
-                        @foreach ($user->posts as $post)
-                          <p>{{$post->title}}</p>
-                        @endforeach
+                    @foreach ($posts as $post)
+                        <h2>{{$post->title}}</h2>
+                        <p>{{$post->user->name}}</p>
                     @endforeach
-                    {{-- @foreach ($addresses as $address)
-                        <h2>{{$address->country}}</h2>
-                        <p>{{$address->user->name}}</p>
-                    @endforeach --}}
                 </div>
             </div>
             

@@ -1,5 +1,6 @@
 <?php
 
+use App\User;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,29 +18,28 @@ Route::get('/', function () {
     return view('welcome');
 });
 Route::get('user', function () {
-    // factory(\App\User::class,3)->create();
-    // \App\Address::create([
+    // $users=User::whereHas('posts',function ($query){
+    //     $query->where('title','like','%title%');
+    // })->with('posts')->get();
+    $users=User::doesntHave('posts')->with('posts')->get();
+    // $users[0]->posts()->create([
+    //     'title'=>'post 3'
+    // ]);
+    // $users[2]->posts()->create([
+    //     'title'=>'post 4'
+    // ]);
+    return view('users.index',compact('users'));
+});
+
+Route::get('posts', function () {
+    // \App\Post::create([
     //     'user_id'=>1,
-    //     'country'=>'uk'
+    //     'title'=>'post 1'
     // ]);
-    // \App\Address::create([
-    //     'user_id'=>2,
-    //     'country'=>'pakistan'
+    // \App\Post::create([
+    //     // 'user_id'=>2,
+    //     'title'=>'post 3'
     // ]);
-    // \App\Address::create([
-    //     'user_id'=>3,
-    //     'country'=>'india'
-    // ]);
-    // $users=\App\User::with('address')->get();
-    // $user=factory(\App\User::class)->create();
-    // $address=new \App\Address([
-    //     'country'=>'indonesia'
-    // ]);
-    // $address->user()->associate($user);
-    // $address->save();
-    // $user->address()->create([
-    //     'country'=>'uk'
-    // ]);
-    $addresses=\App\Address::with('user')->get();
-    return view('users.index',compact('addresses'));
+    $posts=\App\Post::get();
+    return view('posts.index',compact('posts'));
 });
