@@ -1,5 +1,7 @@
 <?php
 
+use App\Post;
+use App\Tag;
 use App\User;
 use Illuminate\Support\Facades\Route;
 
@@ -32,14 +34,14 @@ Route::get('user', function () {
 });
 
 Route::get('posts', function () {
-    // \App\Post::create([
-    //     'user_id'=>1,
-    //     'title'=>'post 1'
-    // ]);
-    // \App\Post::create([
-    //     // 'user_id'=>2,
-    //     'title'=>'post 3'
-    // ]);
-    $posts=\App\Post::get();
+    // $tag=Tag::first();
+    // $post=Post::with('tags')->first();
+    // // $post->tags()->attach([2,3,4]);
+    // dd($post);
+    $posts=\App\Post::with(['user','tags'])->get();
     return view('posts.index',compact('posts'));
+});
+Route::get('tags', function () {
+    $tags=\App\Tag::with('posts')->get();
+    return view('tags.index',compact('tags'));
 });
