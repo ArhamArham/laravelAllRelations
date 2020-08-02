@@ -34,10 +34,16 @@ Route::get('user', function () {
 });
 
 Route::get('posts', function () {
+    // \App\Tag::create([
+    //     'name'=>'Php'
+    // ]);
     // $tag=Tag::first();
-    // $post=Post::with('tags')->first();
-    // // $post->tags()->attach([2,3,4]);
-    // dd($post);
+    $post=Post::first();
+    // $post->tags()->attach([
+    //     1=>[
+    //     'status'=>'approved'
+    // ]]);
+    dd($post->tags->first()->pivot->status  );
     $posts=\App\Post::with(['user','tags'])->get();
     return view('posts.index',compact('posts'));
 });
