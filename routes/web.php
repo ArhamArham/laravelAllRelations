@@ -1,26 +1,47 @@
 <?php
 
+use App\Comment;
 use App\Post;
 use App\Project;
 use App\Tag;
 use App\Task;
 use App\User;
+use App\Video;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Route;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
 
 Route::get('/', function () {
-    return view('welcome');
+    // $user=User::create([
+    //     'name'=>'Arham',
+    //     'email'=>'arham@gmail.com',
+    //     'password'=>Hash::make('password')
+    // ]);
+    // $post=Post::create([
+    //     'user_id'=>$user->id,
+    //     'title'=>'example post title'
+    // ]);
+    // $post->comments()->create([
+    //     'user_id'=>$user->id,
+    //     'body'=>'comment for post'
+    // ]);
+    $post=Post::find(1);
+    // $post->comments()->create([
+    //     'user_id'=>2,
+    //     'body'=>'2nd comment for post'
+    // ]);
+    dd($post->comment);
+    // $video=Video::create([
+    //     'title'=>'example video title'
+    // ]);
+    // $video->comments()->create([
+    //     'user_id'=>$video->id,
+    //     'body'=>'comment for video'
+    // // ]);
+    // $video=Video::find(1);
+    // dd($video->comments);
+    // $comment=Comment::find(3);
+    // dd($comment->subject);
 });
 Route::get('user', function () {
     // $users=User::whereHas('posts',function ($query){

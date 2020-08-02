@@ -15,3 +15,16 @@ Task:
 
 $project->task
 for this we have no colum btw project and task wo we use hasmanythrough
+
+OneToOne/OneToMany
+Post:
+
+Video:
+
+Podcast:
+
+Event:
+
+Comment:
+    commentable_id: 1
+    commentable_type: Post
