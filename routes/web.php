@@ -34,16 +34,16 @@ Route::get('user', function () {
 });
 
 Route::get('posts', function () {
-    // \App\Tag::create([
-    //     'name'=>'Php'
-    // ]);
+    \App\Tag::create([
+        'name'=>'Vuejs'
+    ]);
     // $tag=Tag::first();
     $post=Post::first();
-    // $post->tags()->attach([
-    //     1=>[
-    //     'status'=>'approved'
-    // ]]);
-    dd($post->tags->first()->pivot->status  );
+    $post->tags()->sync([
+        4=>[
+        'status'=>'approved'
+    ]]);
+    // dd($post->tags->first()->pivot->status  );
     $posts=\App\Post::with(['user','tags'])->get();
     return view('posts.index',compact('posts'));
 });
