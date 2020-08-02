@@ -15,11 +15,7 @@ class Post extends Model
     }
     public function tags()
     {
-        return $this
-            ->belongsToMany(Tag::class,'post_tag','post_id','tag_id')
-            ->using(PostTag::class)
-            ->withTimestamps()
-            ->withPivot('status');
+        return $this->morphToMany(Tag::class,'taggable');
     }
     public function comments()
     {

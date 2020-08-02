@@ -12,36 +12,15 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::get('/', function () {
-    // $user=User::create([
-    //     'name'=>'Arham',
-    //     'email'=>'arham@gmail.com',
-    //     'password'=>Hash::make('password')
-    // ]);
-    // $post=Post::create([
-    //     'user_id'=>$user->id,
-    //     'title'=>'example post title'
-    // ]);
-    // $post->comments()->create([
-    //     'user_id'=>$user->id,
-    //     'body'=>'comment for post'
-    // ]);
-    $post=Post::find(1);
-    // $post->comments()->create([
-    //     'user_id'=>2,
-    //     'body'=>'2nd comment for post'
-    // ]);
-    dd($post->comment);
-    // $video=Video::create([
-    //     'title'=>'example video title'
-    // ]);
-    // $video->comments()->create([
-    //     'user_id'=>$video->id,
-    //     'body'=>'comment for video'
-    // // ]);
+    $tag=Tag::find(1);
     // $video=Video::find(1);
-    // dd($video->comments);
-    // $comment=Comment::find(3);
-    // dd($comment->subject);
+    // $video->tags()->attach(2);
+    dd($tag);
+    // $video=Video::create([
+    //     'title'=>'amazing'
+    // ]);
+    // $video->tags()->attach(2);
+
 });
 Route::get('user', function () {
     // $users=User::whereHas('posts',function ($query){
