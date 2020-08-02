@@ -55,42 +55,35 @@ Route::get('tags', function () {
     return view('tags.index',compact('tags'));
 });
 Route::get('projects', function () {
-    $project=Project::create([
+    $project1=Project::create([
+        'title'=>'Project A'
+    ]);
+    $project2=Project::create([
         'title'=>'Project B'
     ]);
     $user1=User::create([
-        'name'=>'User3',
-        'email'=>'user3@gmail.com',
-        'password'=>Hash::make('password'),
-        'project_id'=>$project->id
+        'name'=>'User A',
+        'email'=>'usera@gmail.com',
+        'password'=>Hash::make('password')
     ]);
     $user2=User::create([
-        'name'=>'User4',
-        'email'=>'user4@gmail.com',
-        'password'=>Hash::make('password'),
-        'project_id'=>$project->id  
+        'name'=>'User B',
+        'email'=>'userb@gmail.com',
+        'password'=>Hash::make('password')  
     ]);
-    $user5=User::create([
-        'name'=>'User5',
-        'email'=>'user5@gmail.com',
-        'password'=>Hash::make('password'),
-        'project_id'=>$project->id  
+    $user3=User::create([
+        'name'=>'User C',
+        'email'=>'userc@gmail.com',
+        'password'=>Hash::make('password')  
     ]);
-    $task1=Task::create([
-        'title'=>'Task 4 for project 2 by user 3',
-        'user_id'=>$user1->id
-    ]);
-    $task2=Task::create([
-        'title'=>'Task 5 for project 2 by user 4',
-        'user_id'=>$user2->id
-    ]);
-    $task3=Task::create([
-        'title'=>'Task 5 for project 2 by user 5',
-        'user_id'=>$user5->id
-    ]);
+    $project1->users()->attach($user1);
+    $project1->users()->attach($user2);
+    $project1->users()->attach($user3);
+
+    $project2->users()->attach($user1);
+    $project2->users()->attach($user3);
 });
 Route::get('project', function () {
-    $project=Project::find(6);
-    // return $project->task;
-    dd($project->tasks);
+    $project=Project::find(2);
+    return $project->task;
 });
