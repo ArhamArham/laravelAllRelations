@@ -1,8 +1,11 @@
 <?php
 
 use App\Post;
+use App\Project;
 use App\Tag;
+use App\Task;
 use App\User;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -50,4 +53,44 @@ Route::get('posts', function () {
 Route::get('tags', function () {
     $tags=\App\Tag::with('posts')->get();
     return view('tags.index',compact('tags'));
+});
+Route::get('projects', function () {
+    $project=Project::create([
+        'title'=>'Project B'
+    ]);
+    $user1=User::create([
+        'name'=>'User3',
+        'email'=>'user3@gmail.com',
+        'password'=>Hash::make('password'),
+        'project_id'=>$project->id
+    ]);
+    $user2=User::create([
+        'name'=>'User4',
+        'email'=>'user4@gmail.com',
+        'password'=>Hash::make('password'),
+        'project_id'=>$project->id  
+    ]);
+    $user5=User::create([
+        'name'=>'User5',
+        'email'=>'user5@gmail.com',
+        'password'=>Hash::make('password'),
+        'project_id'=>$project->id  
+    ]);
+    $task1=Task::create([
+        'title'=>'Task 4 for project 2 by user 3',
+        'user_id'=>$user1->id
+    ]);
+    $task2=Task::create([
+        'title'=>'Task 5 for project 2 by user 4',
+        'user_id'=>$user2->id
+    ]);
+    $task3=Task::create([
+        'title'=>'Task 5 for project 2 by user 5',
+        'user_id'=>$user5->id
+    ]);
+});
+Route::get('project', function () {
+    $project=Project::find(6);
+    // return $project->task;
+    dd($project->tasks);
 });
